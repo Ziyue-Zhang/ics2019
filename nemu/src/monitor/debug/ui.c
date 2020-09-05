@@ -63,10 +63,50 @@ static int cmd_info(char *args){
 
   return 0;
 }
+int change(int k) {
+  if (k >= 'A' && k <= 'Z')
+      return k + 'a' - 'A';
+  else
+      return k;
+}
+int htoi(char s[]){
+	int i;
+	int n = 0;
+	if (s[0] == '0' && (s[1] == 'x' || s[1] == 'X'))
+		  i = 2;
+	else
+	    i = 0;
+	for (; (s[i] >= '0' && s[i] <= '9') || (s[i] >= 'a' && s[i] <= 'f') || (s[i] >= 'A' && s[i] <= 'F'); i++) {
+		  if (change(s[i]) > '9')
+			    n = 16 * n + (10 + change(s[i]) - 'a');
+		  else
+			    n = 16 * n + (change(s[i]) - '0');
+  }
+	return n;
+}
 
-/*static int cmd_x(char *args);
+static int cmd_x(char *args){
+  char *num = strtok(NULL, " ");
+  if (num == NULL)
+      printf("Unknown command \n");
+  else {
+      char *arg = strtok(NULL, " ");
+		  if (arg == NULL)
+			    printf("Unknown command \n");
+		  else {
+			    int n = atoi(num);
+			    if (arg[0] == '0' && arg[1] == 'x') {
+				      int address = htoi(arg);
+				      for (int i = 0; i < n; i++, address += 4)
+				          printf("0x%08x: %08x\n", address, paddr_read(address, 4));
+			    }
+			    return 0;
+		  }
+	}
+	return 0;
+}
 
-static int cmd_p(char *args);
+/*static int cmd_p(char *args);
 
 static int cmd_w(char *args);
 
@@ -84,8 +124,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step instructions exactly", cmd_si},
   { "info", "Generic command for showing things about the program being debugged", cmd_info}, 
-  /*{ "x", "Scan memory", cmd_x},
-  { "p", "Print value of expression EXP", cmd_p},
+  { "x", "Scan memory", cmd_x},
+  /*{ "p", "Print value of expression EXP", cmd_p},
   { "w", "Set a watchpoint for an expression", cmd_w},
   { "d", "Delete a watchpoint", cmd_d},
   { "b", "Set a breakpoint", cmd_b},*/
