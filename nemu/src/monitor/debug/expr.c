@@ -276,10 +276,11 @@ uint32_t eval(int p, int q) {
 	 		        }
 			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
 				      if (tokens[i].type == '-' || tokens[i].type == '+') {
-                  if(!check_parentheses(i, q-1))
-                      continue;
-					        flag = true;
-					        temp = i;
+                  if(check_parentheses(i, q-1)){
+					            printf("%d\n",i);
+                      flag = true;
+					            temp = i;
+                  }
 	  	        }
 			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
 				      if (tokens[i].type == '/' || tokens[i].type == '*') {
@@ -314,7 +315,7 @@ uint32_t eval(int p, int q) {
 			    case TK_NEQ: return val1 != val2;
 			    case TK_OR: return val1 || val2;
 			    case TK_AND: return val1 && val2;
-			    case '+': printf("%d\n",temp);return val1 + val2;
+			    case '+': return val1 + val2;
 			    case '-': return val1 - val2;
 		      case '*': return val1 * val2;
 		      case '/': return val1 / val2;
