@@ -276,11 +276,11 @@ uint32_t eval(int p, int q) {
 	 		        }
 			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
 				      if (tokens[i].type == '-' || tokens[i].type == '+') {
-                  if(check_parentheses(i, q-1)){
+                  //if(check_parentheses(i, q-1)){
 					            printf("%d %d\n",i,q-1);
                       flag = true;
 					            temp = i;
-                  }
+                  //}
 	  	        }
 			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
 				      if (tokens[i].type == '/' || tokens[i].type == '*') {
