@@ -237,7 +237,7 @@ uint32_t expr(char *e, bool *success) {
 }
 
 uint32_t eval(int p, int q) {
-	//printf("%d\t%d\n",p,q);
+	printf("%d\t%d\n",p,q);
 	if (p > q)
 		  assert(0);
 	else if (p == q) {
