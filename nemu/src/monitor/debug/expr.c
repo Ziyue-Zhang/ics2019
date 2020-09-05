@@ -238,7 +238,7 @@ uint32_t expr(char *e, bool *success) {
 }
 
 uint32_t eval(int p, int q) {
-	printf("%d\t%d\n",p,q);
+	//printf("%d\t%d\n",p,q);
 	if (p > q)
 		  assert(0);
 	else if (p == q) {
@@ -259,33 +259,40 @@ uint32_t eval(int p, int q) {
  	    }
       int temp1=temp;
 			bool flag = false;
-			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			for (int i = temp1; !flag && i > p; i--)
 			    if (tokens[i].type == TK_OR || tokens[i].type == TK_AND) {
-			        flag = true;
-			        temp = i;
+			        if(check1(p, i-1)){
+                  flag = true;
+			            temp = i;
+              }
 	 		    }
-			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			for (int i = temp1; !flag && i > p; i--)
 			    if (tokens[i].type == TK_EQ || tokens[i].type == TK_NEQ) {
-			        flag = true;
-			        temp = i;
+			        if(check1(p, i-1)){
+                  flag = true;
+			            temp = i;
+              }
 	 		    }
-			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			for (int i = temp1; !flag && i > p; i--)
 			    if (tokens[i].type == TK_G || tokens[i].type == TK_L || tokens[i].type == TK_GEQ || tokens[i].type == TK_LEQ) {
-			        flag = true;
-			        temp = i;
+			        if(check1(p, i-1)){
+                  flag = true;
+			            temp = i;
+              }
 	 		    }
 			for (int i = temp1; !flag && i > p; i--)
 			    if (tokens[i].type == '-' || tokens[i].type == '+') {
-              printf("%d\n",i);
               if(check1(p, i-1)){
                   flag = true;
 			            temp = i;
               }
 	  	    }
-			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			for (int i = temp1; !flag && i > p; i--)
 			    if (tokens[i].type == '/' || tokens[i].type == '*') {
-			        flag = true;
-			        temp = i;
+			        if(check1(p, i-1)){
+                  flag = true;
+			            temp = i;
+              }
  	 		    }
 			if(flag)
 			    op = tokens[temp].type;
