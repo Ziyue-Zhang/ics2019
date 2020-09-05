@@ -274,7 +274,7 @@ uint32_t eval(int p, int q) {
 			        flag = true;
 			        temp = i;
 	 		    }
-			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			for (int i = temp1; !flag && i > p; i--)
 			    if (tokens[i].type == '-' || tokens[i].type == '+') {
               printf("%d\n",i);
               if(check1(p, i-1)){
