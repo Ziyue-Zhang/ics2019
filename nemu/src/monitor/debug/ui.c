@@ -38,6 +38,42 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args){
+  char *arg = strtok(NULL, " ");
+  
+  if (arg  == NULL) {
+      cpu_exec(1);
+  }
+  else { 
+      int num = atoi(arg);
+      cpu_exec(num);
+      return 0;
+  }
+  return 0;
+}
+
+extern void isa_reg_display(void);
+
+static int cmd_info(char *args){
+  char *arg = strtok(NULL, " ");
+
+	if (arg[0] == 'r') {
+      isa_reg_display();
+  }
+
+  return 0;
+}
+
+/*static int cmd_x(char *args);
+
+static int cmd_p(char *args);
+
+static int cmd_w(char *args);
+
+static int cmd_d(char *args);
+
+static int cmd_b(char *args);*/
+
 static struct {
   char *name;
   char *description;
@@ -46,6 +82,13 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  { "si", "Step instructions exactly", cmd_si},
+  { "info", "Generic command for showing things about the program being debugged", cmd_info}, 
+  /*{ "x", "Scan memory", cmd_x},
+  { "p", "Print value of expression EXP", cmd_p},
+  { "w", "Set a watchpoint for an expression", cmd_w},
+  { "d", "Delete a watchpoint", cmd_d},
+  { "b", "Set a breakpoint", cmd_b},*/
 
   /* TODO: Add more commands */
 
