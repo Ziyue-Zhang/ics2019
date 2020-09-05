@@ -106,9 +106,17 @@ static int cmd_x(char *args){
 	return 0;
 }
 
-/*static int cmd_p(char *args);
+static int cmd_p(char *args){
+  bool flag = true;
+	uint32_t  result = expr(args, &flag);
+	if(!flag)
+		  printf("input wrong expression\n");
+	else 
+		  printf("%d  0x%08x\n", result, result);
+	return 0;
+}
 
-static int cmd_w(char *args);
+/*static int cmd_w(char *args);
 
 static int cmd_d(char *args);
 
@@ -125,8 +133,8 @@ static struct {
   { "si", "Step instructions exactly", cmd_si},
   { "info", "Generic command for showing things about the program being debugged", cmd_info}, 
   { "x", "Scan memory", cmd_x},
-  /*{ "p", "Print value of expression EXP", cmd_p},
-  { "w", "Set a watchpoint for an expression", cmd_w},
+  { "p", "Print value of expression EXP", cmd_p},
+  /*{ "w", "Set a watchpoint for an expression", cmd_w},
   { "d", "Delete a watchpoint", cmd_d},
   { "b", "Set a breakpoint", cmd_b},*/
 
