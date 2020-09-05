@@ -116,11 +116,54 @@ static int cmd_p(char *args){
 	return 0;
 }
 
-/*static int cmd_w(char *args);
+static int cmd_w(char *args){
+  bool flag = true;
+	uint32_t result = expr(args, &flag);
+	if(!flag)
+		  assert(0);
+	WP *p= new_wp();
+	//WP *head=gethead();
+	//if(head)
+	if(!strncmp(args,"$eip==",6))
+		  p->flag = true;
+	else 
+		  p->flag = false;
+	strncpy(p->expr,args,1000);
+	p->result = result;
+	if(p->flag)
+		  printf("Breakpoint at 0x%x\n", (uint32_t) strtol(args+6,NULL,16));
+	else 
+		  printf("Watchpoint %d:at %s\n", p->NO, args);
+	return 0;
+}
 
-static int cmd_d(char *args);
+static int cmd_d(char *args){
+  int num = atoi(args);
+	WP *p = gethead();
+	bool flag= false;
+	while(p) {
+		  if(p->NO == num) {
+			    free_wp(p);
+			    flag = true;
+			    break;
+		  }
+		  p = p->next;
+	}
+	if(flag)
+		  printf("Delete watchpoint %d successfully\n",num);
+	else
+		  printf("Cannot find this watchpoint\n");
+	return 0;
+}
 
-static int cmd_b(char *args);*/
+static int cmd_b(char *args){
+  if(args[0] == '*')
+		  args++;
+	char expr[1000]="$eip==\0";
+	strcat (expr,args);
+	cmd_w(expr);
+	return 0;
+}
 
 static struct {
   char *name;
@@ -134,9 +177,9 @@ static struct {
   { "info", "Generic command for showing things about the program being debugged", cmd_info}, 
   { "x", "Scan memory", cmd_x},
   { "p", "Print value of expression EXP", cmd_p},
-  /*{ "w", "Set a watchpoint for an expression", cmd_w},
+  { "w", "Set a watchpoint for an expression", cmd_w},
   { "d", "Delete a watchpoint", cmd_d},
-  { "b", "Set a breakpoint", cmd_b},*/
+  { "b", "Set a breakpoint", cmd_b},
 
   /* TODO: Add more commands */
 

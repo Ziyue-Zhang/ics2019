@@ -346,6 +346,7 @@ bool check_parentheses(int p, int q) {
 		  return false;
 	return true;
 }
+
 bool check1(int p, int q) { 
 	int bracket = 0;
 	for(int i = p; i <=  q; i++) {  
