@@ -276,6 +276,7 @@ uint32_t eval(int p, int q) {
 	 		    }
 			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
 			    if (tokens[i].type == '-' || tokens[i].type == '+') {
+              printf("%d\n",i);
               if(check1(p, i-1)){
                   flag = true;
 			            temp = i;
