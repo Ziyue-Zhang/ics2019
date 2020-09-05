@@ -11,6 +11,7 @@
 
 uint32_t eval(int p, int q);
 bool check_parentheses(int p, int q);
+bool check1(int p, int q);
 
 
 enum {
@@ -255,55 +256,52 @@ uint32_t eval(int p, int q) {
 		  if (tokens[q].type == ')') {
 			    for(; !check_parentheses(temp,q); temp--);
 			    temp--;
-			    op = tokens[temp].type;
  	    }
-	    else {
-			    bool flag = false;
-			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
-				      if (tokens[i].type == TK_OR || tokens[i].type == TK_AND) {
-					        flag = true;
-					        temp = i;
-	 		        }
-			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
-				      if (tokens[i].type == TK_EQ || tokens[i].type == TK_NEQ) {
-					        flag = true;
-					        temp = i;
-	 		        }
-			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
-				      if (tokens[i].type == TK_G || tokens[i].type == TK_L || tokens[i].type == TK_GEQ || tokens[i].type == TK_LEQ) {
-					        flag = true;
-					        temp = i;
-	 		        }
-			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
-				      if (tokens[i].type == '-' || tokens[i].type == '+') {
-                  //if(check_parentheses(i, q-1)){
-					            printf("%d %d\n",i,q-1);
-                      flag = true;
-					            temp = i;
-                  //}
-	  	        }
-			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
-				      if (tokens[i].type == '/' || tokens[i].type == '*') {
-					        flag = true;
-					        temp = i;
- 	 		        }
-			    if(flag)
-				      op = tokens[temp].type;
-			    else {
-				      if (tokens[p].type == DEREF) {
-					        uint32_t address = eval(p+1, q);
-					        return (uint32_t) vaddr_read(address, 4);
-			        }
-				      else if (tokens[p].type == MINUS) {					
-					        int result = -eval(p+1, q);
-					        return result;
-				      }
-				      else if (tokens[p].type == NOT) {
-					        uint32_t result = !eval(p+1, q);
-					        return result;
-				      }
+      int temp1=temp;
+			bool flag = false;
+			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			    if (tokens[i].type == TK_OR || tokens[i].type == TK_AND) {
+			        flag = true;
+			        temp = i;
+	 		    }
+			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			    if (tokens[i].type == TK_EQ || tokens[i].type == TK_NEQ) {
+			        flag = true;
+			        temp = i;
+	 		    }
+			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			    if (tokens[i].type == TK_G || tokens[i].type == TK_L || tokens[i].type == TK_GEQ || tokens[i].type == TK_LEQ) {
+			        flag = true;
+			        temp = i;
+	 		    }
+			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			    if (tokens[i].type == '-' || tokens[i].type == '+') {
+              if(check1(p, i-1)){
+                  flag = true;
+			            temp = i;
+              }
+	  	    }
+			for (int i = temp1; !flag && i > p && tokens[i].type != ')'; i--)
+			    if (tokens[i].type == '/' || tokens[i].type == '*') {
+			        flag = true;
+			        temp = i;
+ 	 		    }
+			if(flag)
+			    op = tokens[temp].type;
+			else {
+			    if (tokens[p].type == DEREF) {
+			        uint32_t address = eval(p+1, q);
+			        return (uint32_t) vaddr_read(address, 4);
 			    }
-      }
+			    else if (tokens[p].type == MINUS) {					
+			        int result = -eval(p+1, q);
+			        return result;
+			    }
+			    else if (tokens[p].type == NOT) {
+			        uint32_t result = !eval(p+1, q);
+			        return result;
+			    }
+			}
 	    uint32_t val1 = eval(p, temp-1);
 	    uint32_t val2 = eval(temp + 1, q);
 	    switch (op) { 
@@ -335,6 +333,20 @@ bool check_parentheses(int p, int q) {
 			    bracket--;
 		  if (bracket == 0 && i != q)
 			    return false;
+  } 
+	if (bracket != 0)
+		  return false;
+	return true;
+}
+bool check1(int p, int q) { 
+	int bracket = 0;
+	for(int i = p; i <=  q; i++) {  
+		  if (bracket < 0)
+			    return false;
+		  if (tokens[i].type == '(')
+			    bracket++;
+		  else if (tokens[i].type==')')
+			    bracket--;
   } 
 	if (bracket != 0)
 		  return false;
