@@ -276,6 +276,8 @@ uint32_t eval(int p, int q) {
 	 		        }
 			    for (int i = q - 1; !flag && i > p && tokens[i].type != ')'; i--)
 				      if (tokens[i].type == '-' || tokens[i].type == '+') {
+                  if(!check_parentheses(i, q))
+                      continue;
 					        flag = true;
 					        temp = i;
 	  	        }
