@@ -30,9 +30,10 @@ make_DHelper(U) {
 }
 
 make_DHelper(ld) {
-  printf("aa%d\n",decinfo.isa.instr.rs1);
   decode_op_r(id_src, decinfo.isa.instr.rs1, true);
   decode_op_i(id_src2, decinfo.isa.instr.simm11_0, true);
+
+  printf("aa%d\n",id_src->reg);
 
   print_Dop(id_src->str, OP_STR_SIZE, "%d(%s)", id_src2->val, reg_name(id_src->reg, 4));
 
