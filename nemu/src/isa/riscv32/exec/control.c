@@ -13,6 +13,7 @@ make_EHelper(jalr) {
   // the target address is calculated at the decode stage
   printf("nmsl");
   t0 = decinfo.seq_pc + 4;
+  printf("%d\n",id_src->reg);
   decinfo.jmp_pc = (reg_l(id_src->reg) + id_src2->val) & ~1;
   printf("%08x",cpu.pc);
   rtl_sr(id_dest->reg, &t0, 4);
