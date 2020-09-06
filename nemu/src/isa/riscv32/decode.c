@@ -35,6 +35,8 @@ make_DHelper(ld) {
 
   print_Dop(id_src->str, OP_STR_SIZE, "%d(%s)", id_src2->val, reg_name(id_src->reg, 4));
 
+  printf("aa%d\n",id_src->reg);
+
   rtl_add(&id_src->addr, &id_src->val, &id_src2->val);
 
   decode_op_r(id_dest, decinfo.isa.instr.rd, false);
