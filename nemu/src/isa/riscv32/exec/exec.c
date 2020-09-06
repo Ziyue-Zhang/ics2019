@@ -19,11 +19,6 @@ static make_EHelper(store) {
   idex(pc, &store_table[decinfo.isa.instr.funct3]);
 }
 
-static make_EHelper(add) {
-  /*decinfo.width = store_table[decinfo.isa.instr.funct3].width;
-  idex(pc, &store_table[decinfo.isa.instr.funct3]);*/
-}
-
 static OpcodeEntry opcode_table [32] = {
   /* b00 */ IDEX(ld, load), EMPTY, EMPTY, EMPTY, IDEX(ld, add), EMPTY, EMPTY, EMPTY,
   /* b01 */ IDEX(st, store), EMPTY, EMPTY, EMPTY, EMPTY, IDEX(U, lui), EMPTY, EMPTY,
