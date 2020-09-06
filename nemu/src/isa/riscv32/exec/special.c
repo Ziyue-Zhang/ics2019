@@ -3,6 +3,7 @@
 
 make_EHelper(inv) {
   /* invalid opcode */
+  printf("nmsl\n");
 
   uint32_t instr[2];
   *pc = cpu.pc;
