@@ -14,3 +14,14 @@ make_EHelper(add) {
 
   print_asm_template2(add);
 }
+
+make_EHelper(auipc) {
+
+  t0 = cpu.pc;
+
+  rtl_add(&id_dest->val, &id_src->val, &t0);
+  printf("sb%08x\n",id_dest->val);
+  rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+  print_asm_template2(add);
+}
