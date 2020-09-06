@@ -56,7 +56,7 @@ make_DHelper(J) {
   int32_t simm = (decinfo.isa.instr.simm20 << 20) | (decinfo.isa.instr.imm10_1 << 1) | (decinfo.isa.instr.imm11_ << 11) | (decinfo.isa.instr.imm19_12 << 12);
   decode_op_i(id_src, simm, true);
 
-  printf("%d\n",simm);
+  printf("sb%d\n",simm);
 
   print_Dop(id_src->str, OP_STR_SIZE, "0x%x", simm);
 
