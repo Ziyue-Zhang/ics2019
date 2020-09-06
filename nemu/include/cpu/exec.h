@@ -42,6 +42,7 @@ static inline void idex(vaddr_t *pc, OpcodeEntry *e) {
     e->decode(pc);
   printf("aaa\n");
   e->execute(pc);
+  printf("bbb\n");
 }
 
 static inline void update_pc(void) {
