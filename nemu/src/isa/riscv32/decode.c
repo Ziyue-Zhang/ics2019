@@ -53,13 +53,12 @@ make_DHelper(st) {
 }
 
 make_DHelper(J) {
-  decode_op_r(id_src, decinfo.isa.instr.rs1, true);
-  int32_t simm = (decinfo.isa.instr.simm11_5 << 5) | decinfo.isa.instr.imm4_0;
-  decode_op_i(id_src2, simm, true);
+  int32_t simm = (decinfo.isa.instr.simm20 << 20) | (decinfo.isa.instr.imm10_1 << 1) | (decinfo.isa.instr.imm11_ << 11) | (decinfo.isa.instr.imm19_12 << 12);
+  decode_op_i(id_src, simm, true);
 
-  print_Dop(id_src->str, OP_STR_SIZE, "%d(%s)", id_src2->val, reg_name(id_src->reg, 4));
+  printf("%d\n",simm);
 
-  rtl_add(&id_src->addr, &id_src->val, &id_src2->val);
+  print_Dop(id_src->str, OP_STR_SIZE, "0x%x", simm);
 
-  decode_op_r(id_dest, decinfo.isa.instr.rs2, true);
+  decode_op_r(id_dest, decinfo.isa.instr.rd, false);
 }
