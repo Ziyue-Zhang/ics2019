@@ -12,6 +12,18 @@ make_EHelper(ld) {
   }
 }
 
+make_EHelper(lds) {
+  rtl_lm(&s0, &id_src->addr, decinfo.width);
+  rtl_sext(&s1, &s0, decinfo.width);
+  rtl_sr(id_dest->reg, &s1, 4);
+
+  switch (decinfo.width) {
+    case 2: print_asm_template2(lh); break;
+    case 1: print_asm_template2(lb); break;
+    default: assert(0);
+  }
+}
+
 make_EHelper(st) {
   rtl_sm(&id_src->addr, &id_dest->val, decinfo.width);
 
