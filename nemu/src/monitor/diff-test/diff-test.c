@@ -75,6 +75,7 @@ void init_difftest(char *ref_so_file, long img_size) {
       "If it is not necessary, you can turn it off in include/common.h.", ref_so_file);
 
   ref_difftest_init();
+  printf("nmsl\n");
   ref_difftest_memcpy_from_dut(PC_START, guest_to_host(IMAGE_START), img_size);
   char *mainargs = guest_to_host(0);
   ref_difftest_memcpy_from_dut(PC_START - IMAGE_START, mainargs, strlen(mainargs) + 1);
