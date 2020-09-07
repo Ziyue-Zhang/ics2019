@@ -74,15 +74,12 @@ void init_difftest(char *ref_so_file, long img_size) {
       "This will help you a lot for debugging, but also significantly reduce the performance. "
       "If it is not necessary, you can turn it off in include/common.h.", ref_so_file);
 
-  printf("nmsl\n");
   ref_difftest_init();
-  printf("nmsl\n");
   ref_difftest_memcpy_from_dut(PC_START, guest_to_host(IMAGE_START), img_size);
   char *mainargs = guest_to_host(0);
   ref_difftest_memcpy_from_dut(PC_START - IMAGE_START, mainargs, strlen(mainargs) + 1);
   ref_difftest_setregs(&cpu);
 
-  printf("nmsl\n");
 }
 
 static void checkregs(CPU_state *ref, vaddr_t pc) {
