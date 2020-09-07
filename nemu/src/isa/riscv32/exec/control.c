@@ -1,6 +1,6 @@
 #include "cpu/exec.h"
 
-make_EHelper(jmp) {
+make_EHelper(jal) {
   // the target address is calculated at the decode stage
   
   rtl_sr(id_dest->reg, &id_src2->val, 4);

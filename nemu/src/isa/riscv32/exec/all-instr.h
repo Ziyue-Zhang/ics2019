@@ -11,6 +11,6 @@ make_EHelper(st);
 make_EHelper(inv);
 make_EHelper(nemu_trap);
 
-make_EHelper(jmp);
+make_EHelper(jal);
 make_EHelper(jalr);
 make_EHelper(beq);
