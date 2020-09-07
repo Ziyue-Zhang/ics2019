@@ -18,3 +18,10 @@ make_EHelper(jalr) {
 
   print_asm_template2(jalr);
 }
+
+make_EHelper(beq) {
+  // the target address is calculated at the decode stage
+  rtl_jrelop(RELOP_EQ, &id_src->val, &id_src2->val, decinfo.jmp_pc);
+  
+  print_asm_template2(beq);
+}

@@ -47,6 +47,16 @@ make_DHelper(R) {
   decode_op_r(id_dest, decinfo.isa.instr.rd, false);
 }
 
+make_DHelper(B) {
+  decode_op_r(id_src, decinfo.isa.instr.rs1, true);
+  decode_op_i(id_src2, decinfo.isa.instr.rs2, true);
+
+  print_Dop(id_src->str, OP_STR_SIZE, "0x%x", id_src->reg);
+
+  int32_t simm = (decinfo.isa.instr.simm12 << 12) | (decinfo.isa.instr.imm10_5 << 5) | (decinfo.isa.instr.imm4_1 << 1) | (decinfo.isa.instr.imm11 << 11);
+  decinfo.jmp_pc=cpu.pc+simm;
+}
+
 make_DHelper(ld) {
   decode_op_r(id_src, decinfo.isa.instr.rs1, true);
   decode_op_i(id_src2, decinfo.isa.instr.simm11_0, true);
