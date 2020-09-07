@@ -57,8 +57,6 @@ void init_difftest(char *ref_so_file, long img_size) {
   ref_difftest_memcpy_from_dut = dlsym(handle, "difftest_memcpy_from_dut");
   assert(ref_difftest_memcpy_from_dut);
 
-  printf("nmsl\n");
-
   ref_difftest_getregs = dlsym(handle, "difftest_getregs");
   assert(ref_difftest_getregs);
 
@@ -81,6 +79,8 @@ void init_difftest(char *ref_so_file, long img_size) {
   char *mainargs = guest_to_host(0);
   ref_difftest_memcpy_from_dut(PC_START - IMAGE_START, mainargs, strlen(mainargs) + 1);
   ref_difftest_setregs(&cpu);
+
+  printf("nmsl\n");
 }
 
 static void checkregs(CPU_state *ref, vaddr_t pc) {
