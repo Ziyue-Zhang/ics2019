@@ -57,6 +57,8 @@ void init_difftest(char *ref_so_file, long img_size) {
   ref_difftest_memcpy_from_dut = dlsym(handle, "difftest_memcpy_from_dut");
   assert(ref_difftest_memcpy_from_dut);
 
+  printf("nmsl\n");
+
   ref_difftest_getregs = dlsym(handle, "difftest_getregs");
   assert(ref_difftest_getregs);
 
