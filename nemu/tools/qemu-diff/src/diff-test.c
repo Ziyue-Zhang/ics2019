@@ -58,6 +58,7 @@ void difftest_init(void) {
 
     close(STDIN_FILENO);
     execlp(ISA_QEMU_BIN, ISA_QEMU_BIN, ISA_QEMU_ARGS "-S", "-s", "-nographic", NULL);
+    printf("nmsl\n");
     perror("exec");
     assert(0);
   }
