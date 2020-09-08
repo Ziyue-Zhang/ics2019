@@ -23,10 +23,14 @@ make_EHelper(relop) {
   // the target address is calculated at the decode stage
   if(decinfo.opcode==0){
       rtl_jrelop(RELOP_EQ, &id_src->val, &id_src2->val, decinfo.jmp_pc);
+      print_asm_template2(beq);
+  }
+  else if(decinfo.opcode==1){
+      rtl_jrelop(RELOP_NE, &id_src->val, &id_src2->val, decinfo.jmp_pc);
+      print_asm_template2(bne);
   }
   else{
     printf("%d\n",decinfo.opcode);
     assert(0);
   }
-  print_asm_template2(beq);
 }
