@@ -11,7 +11,7 @@ make_EHelper(jal) {
 
 make_EHelper(jalr) {
 
-  t0 = decinfo.seq_pc + 4;
+  t0 = decinfo.seq_pc;
   decinfo.jmp_pc = (reg_l(id_src->reg) + id_src2->val) & ~1;
   rtl_sr(id_dest->reg, &t0, 4);
   rtl_j(decinfo.jmp_pc);
