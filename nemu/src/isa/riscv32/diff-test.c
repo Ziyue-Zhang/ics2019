@@ -3,8 +3,7 @@
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   if(cpu.pc != pc){
-      printf("wring pc\n");
-      return false;
+      printf("%08x %08x\n",cpu.pc, pc);
   }
   for(int i = 0; i < 32; i++){
       if(reg_l(i) != ref_r->gpr[i]._32){
