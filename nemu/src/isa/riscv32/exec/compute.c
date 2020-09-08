@@ -28,6 +28,12 @@ make_EHelper(compute) {
 
       print_asm_template2(sub);
   }
+  else if(decinfo.opcode==1){
+      rtl_imul_lo(&id_dest->val, &id_src->val, &id_src2->val);
+      rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+      print_asm_template2(sub);
+  }
   else{
       printf("%08x %d\n",cpu.pc,decinfo.opcode);
       assert(0);
