@@ -45,6 +45,7 @@ make_DHelper(R) {
   print_Dop(id_src->str, OP_STR_SIZE, "0x%x", id_src->reg);
 
   decode_op_r(id_dest, decinfo.isa.instr.rd, false);
+  decinfo.opcode = decinfo.isa.instr.funct7;
 }
 
 make_DHelper(B) {
