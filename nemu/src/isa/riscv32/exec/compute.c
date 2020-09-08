@@ -19,7 +19,7 @@ make_EHelper(add) {
       rtl_shl(&id_dest->val, &id_src->val, &t0);
       rtl_sr(id_dest->reg, &id_dest->val, 4);
 
-      print_asm_template2(add);
+      print_asm_template2(slli);
   }
   else if(decinfo.opcode==3){
       if((uint32_t)id_src->val<(uint32_t)id_src2->val){
@@ -29,13 +29,13 @@ make_EHelper(add) {
           t0=0;
       }
       rtl_sr(id_dest->reg, &t0, 4);
-      print_asm_template2(add);
+      print_asm_template2(sltiu);
   }
   else if(decinfo.opcode==7){
       rtl_and(&id_dest->val, &id_src->val, &id_src2->val);
       rtl_sr(id_dest->reg, &id_dest->val, 4);
 
-      print_asm_template2(add);
+      print_asm_template2(addi);
   }
   else{
     assert(0);
@@ -61,6 +61,12 @@ make_EHelper(compute) {
           rtl_sr(id_dest->reg, &t0, 4);
 
           print_asm_template2(sll);
+      }
+      else if(decinfo.isa.instr.funct3==6){
+          rtl_or(&id_dest->val, &id_src->val, &id_src2->val);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(or);
       }
       else{
         assert(0);
