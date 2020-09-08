@@ -39,6 +39,14 @@ make_EHelper(relop) {
       rtl_jrelop(RELOP_GE, &id_src->val, &id_src2->val, decinfo.jmp_pc);
       print_asm_template2(bne);
   }
+  else if(decinfo.opcode==6){
+      rtl_jrelop(RELOP_LTU, &id_src->val, &id_src2->val, decinfo.jmp_pc);
+      print_asm_template2(bne);
+  }
+  else if(decinfo.opcode==7){
+      rtl_jrelop(RELOP_GEU, &id_src->val, &id_src2->val, decinfo.jmp_pc);
+      print_asm_template2(bne);
+  }
   else{
     printf("%08x %d\n",cpu.pc,decinfo.opcode);
     assert(0);
