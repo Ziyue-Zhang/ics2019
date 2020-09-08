@@ -60,16 +60,32 @@ make_EHelper(compute) {
       }
   }
   else if(decinfo.opcode==32){
-      rtl_sub(&id_dest->val, &id_src->val, &id_src2->val);
-      rtl_sr(id_dest->reg, &id_dest->val, 4);
+      if(decinfo.isa.instr.funct3==0){
+          rtl_sub(&id_dest->val, &id_src->val, &id_src2->val);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
 
-      print_asm_template2(sub);
+          print_asm_template2(sub);
+      }
+      else{
+        assert(0);
+      }
   }
   else if(decinfo.opcode==1){
-      rtl_imul_lo(&id_dest->val, &id_src->val, &id_src2->val);
-      rtl_sr(id_dest->reg, &id_dest->val, 4);
+      if(decinfo.isa.instr.funct3==0){
+          rtl_imul_lo(&id_dest->val, &id_src->val, &id_src2->val);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
 
-      print_asm_template2(sub);
+          print_asm_template2(mul);
+      }
+      else if(decinfo.isa.instr.funct3==0){
+          rtl_imul_lo(&id_dest->val, &id_src->val, &id_src2->val);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(mul);
+      }
+      else{
+        assert(0);
+      }
   }
   else{
       printf("%08x %d\n",cpu.pc,decinfo.opcode);
