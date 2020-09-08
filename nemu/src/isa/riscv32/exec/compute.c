@@ -97,6 +97,13 @@ make_EHelper(compute) {
 
           print_asm_template2(xor);
       }
+      else if(decinfo.isa.instr.funct3==5){
+          t0 = id_src2->val & 0b11111;
+          rtl_shr(&id_dest->val, &id_src->val, &t0);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(sll);
+      }
       else if(decinfo.isa.instr.funct3==6){
           rtl_or(&id_dest->val, &id_src->val, &id_src2->val);
           rtl_sr(id_dest->reg, &id_dest->val, 4);
