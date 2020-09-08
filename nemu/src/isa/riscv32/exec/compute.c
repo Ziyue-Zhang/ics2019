@@ -23,7 +23,6 @@ make_EHelper(compute) {
       print_asm_template2(add);
   }
   else if(decinfo.opcode==32){
-      printf("nmsl\n");
       rtl_sub(&id_dest->val, &id_src->val, &id_src2->val);
       rtl_sr(id_dest->reg, &id_dest->val, 4);
 
