@@ -29,6 +29,7 @@ make_EHelper(compute) {
       print_asm_template2(sub);
   }
   else{
+      printf("%08x %d\n",cpu.pc,decinfo.opcode);
       assert(0);
   }
 }

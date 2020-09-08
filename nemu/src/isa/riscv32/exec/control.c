@@ -38,7 +38,7 @@ make_EHelper(relop) {
       print_asm_template2(bne);
   }
   else{
-    printf("%d\n",decinfo.opcode);
+    printf("%08x %d\n",cpu.pc,decinfo.opcode);
     assert(0);
   }
 }
