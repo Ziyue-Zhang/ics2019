@@ -60,7 +60,7 @@ make_EHelper(compute) {
           }
           rtl_sr(id_dest->reg, &t0, 4);
 
-          print_asm_template2(add);
+          print_asm_template2(sll);
       }
       else{
         assert(0);
