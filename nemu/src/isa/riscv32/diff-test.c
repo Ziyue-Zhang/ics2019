@@ -5,7 +5,6 @@ extern void isa_reg_display();
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   bool flag=true;
-  printf("%08x\n",cpu.pc);
   for(int i = 0; i < 32; i++){
       if(reg_l(i) != ref_r->gpr[i]._32){
           printf("%08x %08x\n",cpu.pc,pc);

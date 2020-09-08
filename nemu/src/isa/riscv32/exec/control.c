@@ -16,7 +16,6 @@ make_EHelper(jalr) {
   rtl_sr(id_dest->reg, &t0, 4);
   rtl_j(decinfo.jmp_pc);
 
-  printf("nmsl\n");
   difftest_skip_dut(1, 2);
 
   print_asm_template2(jalr);
