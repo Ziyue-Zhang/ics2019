@@ -104,6 +104,7 @@ make_EHelper(compute) {
           print_asm_template2(or);
       }
       else{
+        printf("%08x\n",cpu.pc);
         assert(0);
       }
   }
