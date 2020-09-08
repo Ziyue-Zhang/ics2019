@@ -3,6 +3,7 @@
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   if(cpu.pc > pc){
+      printf("%08x %08x\n",cpu.pc, pc);
       difftest_skip_dut(1,0);
   }
   bool flag=true;
