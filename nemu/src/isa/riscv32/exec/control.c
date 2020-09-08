@@ -25,6 +25,7 @@ make_EHelper(relop) {
       rtl_jrelop(RELOP_EQ, &id_src->val, &id_src2->val, decinfo.jmp_pc);
   }
   else{
+    printf("%d\n",decinfo.opcode);
     assert(0);
   }
   print_asm_template2(beq);
