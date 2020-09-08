@@ -77,11 +77,11 @@ make_EHelper(compute) {
 
           print_asm_template2(mul);
       }
-      else if(decinfo.isa.instr.funct3==0){
-          rtl_imul_lo(&id_dest->val, &id_src->val, &id_src2->val);
+      else if(decinfo.isa.instr.funct3==6){
+          rtl_idiv_r(&id_dest->val, &id_src->val, &id_src2->val);
           rtl_sr(id_dest->reg, &id_dest->val, 4);
 
-          print_asm_template2(mul);
+          print_asm_template2(rem);
       }
       else{
         assert(0);
