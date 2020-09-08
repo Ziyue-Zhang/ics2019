@@ -54,7 +54,8 @@ make_DHelper(B) {
   print_Dop(id_src->str, OP_STR_SIZE, "0x%x", id_src->reg);
 
   int32_t simm = (decinfo.isa.instr.simm12 << 12) | (decinfo.isa.instr.imm10_5 << 5) | (decinfo.isa.instr.imm4_1 << 1) | (decinfo.isa.instr.imm11 << 11);
-  decinfo.jmp_pc=cpu.pc+simm;
+  decinfo.jmp_pc = cpu.pc+simm;
+  decinfo.opcode = decinfo.isa.instr.funct3;
 }
 
 make_DHelper(ld) {
