@@ -91,6 +91,17 @@ make_EHelper(compute) {
 
           print_asm_template2(slt);
       }
+      else if(decinfo.isa.instr.funct3==3){
+          if((uint32_t)id_src->val<(uint32_t)id_src2->val){
+            t0=1;
+          }
+          else{
+            t0=0;
+          }
+          rtl_sr(id_dest->reg, &t0, 4);
+
+          print_asm_template2(slt);
+      }
       else if(decinfo.isa.instr.funct3==4){
           rtl_xor(&id_dest->val, &id_src->val, &id_src2->val);
           rtl_sr(id_dest->reg, &id_dest->val, 4);
