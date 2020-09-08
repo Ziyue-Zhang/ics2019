@@ -38,7 +38,7 @@ make_EHelper(add) {
       print_asm_template2(addi);
   }
   else if(decinfo.opcode==5){
-      if(id_src2->val & 0b100000000000){
+      if(decinfo.isa.instr.funct7==32){
           t0 = id_src2->val & 0b111111;
           printf("sb%08x\n",id_src->val);
           rtl_sar(&id_dest->val, &id_src->val, &t0);
