@@ -26,7 +26,8 @@ make_EHelper(relop) {
       print_asm_template2(beq);
   }
   else if(decinfo.opcode==1){
-    printf("%08x\n",cpu.pc);
+      printf("%d %d\n",id_src->val, id_src2->val);
+      printf("%08x\n",cpu.pc);
       printf("%08x\n",decinfo.jmp_pc);
       rtl_jrelop(RELOP_NE, &id_src->val, &id_src2->val, decinfo.jmp_pc);
       print_asm_template2(bne);
