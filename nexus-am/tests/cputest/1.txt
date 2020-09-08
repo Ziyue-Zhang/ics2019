@@ -5,3 +5,4 @@
 + LD -> build/matrix-mul-riscv32-nemu.elf
 + OBJCOPY -> build/matrix-mul-riscv32-nemu.bin
 Building riscv32-nemu
++ CC src/isa/riscv32/exec/compute.c
