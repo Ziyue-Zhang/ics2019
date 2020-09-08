@@ -37,6 +37,22 @@ make_EHelper(add) {
 
       print_asm_template2(addi);
   }
+  else if(decinfo.opcode==5){
+      if(id_src2->val & 0b100000000000){
+          t0 = id_src2->val & 0b111111;
+          rtl_sar(&id_dest->val, &id_src->val, &t0);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(srai);
+      }
+      else{
+          t0 = id_src2->val & 0b111111;
+          rtl_shr(&id_dest->val, &id_src->val, &t0);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(srli);
+      }
+  }
   else if(decinfo.opcode==7){
       rtl_and(&id_dest->val, &id_src->val, &id_src2->val);
       rtl_sr(id_dest->reg, &id_dest->val, 4);
