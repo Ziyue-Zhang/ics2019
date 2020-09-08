@@ -120,6 +120,12 @@ make_EHelper(compute) {
 
           print_asm_template2(mul);
       }
+      else if(decinfo.isa.instr.funct3==1){
+          rtl_imul_hi(&id_dest->val, &id_src->val, &id_src2->val);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(mulh);
+      }
       else if(decinfo.isa.instr.funct3==6){
           rtl_idiv_r(&id_dest->val, &id_src->val, &id_src2->val);
           rtl_sr(id_dest->reg, &id_dest->val, 4);
