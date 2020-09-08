@@ -23,6 +23,17 @@ make_EHelper(compute) {
 
           print_asm_template2(add);
       }
+      else if(decinfo.isa.instr.funct3==2){
+          if((int)id_src->val<(int)id_src2->val){
+            t0=1;
+          }
+          else{
+            t0=0;
+          }
+          rtl_sr(id_dest->reg, &t0, 4);
+
+          print_asm_template2(add);
+      }
       else{
         assert(0);
       }
