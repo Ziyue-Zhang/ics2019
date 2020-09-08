@@ -8,10 +8,21 @@ make_EHelper(lui) {
 
 make_EHelper(add) {
 
-  rtl_add(&id_dest->val, &id_src->val, &id_src2->val);
-  rtl_sr(id_dest->reg, &id_dest->val, 4);
+  if(decinfo.opcode==0){
+      rtl_add(&id_dest->val, &id_src->val, &id_src2->val);
+      rtl_sr(id_dest->reg, &id_dest->val, 4);
 
-  print_asm_template2(add);
+      print_asm_template2(add);
+  }
+  else if(decinfo.opcode==0){
+      rtl_and(&id_dest->val, &id_src->val, &id_src2->val);
+      rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+      print_asm_template2(add);
+  }
+  else{
+    assert(0);
+  }
 }
 
 make_EHelper(compute) {
