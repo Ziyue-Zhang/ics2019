@@ -139,6 +139,7 @@ make_EHelper(compute) {
           print_asm_template2(rem);
       }
       else{
+        printf("%08x %d\n",cpu.pc,decinfo.isa.instr.funct3);
         assert(0);
       }
   }
