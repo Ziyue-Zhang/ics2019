@@ -51,6 +51,13 @@ make_EHelper(compute) {
 
           print_asm_template2(add);
       }
+      else if(decinfo.opcode==1){
+          t0 = id_src2->val & 0b11111;
+          rtl_shl(&id_dest->val, &id_src->val, &t0);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(sll);
+      }
       else if(decinfo.isa.instr.funct3==2){
           if((int32_t)id_src->val<(int32_t)id_src2->val){
             t0=1;
