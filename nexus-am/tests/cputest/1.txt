@@ -5,21 +5,3 @@
 + LD -> build/matrix-mul-riscv32-nemu.elf
 + OBJCOPY -> build/matrix-mul-riscv32-nemu.bin
 Building riscv32-nemu
-+ CC src/device/io/port-io.c
-+ CC src/device/io/map.c
-+ CC src/device/io/mmio.c
-+ CC src/device/vga.c
-+ CC src/device/device.c
-+ CC src/device/keyboard.c
-+ CC src/device/intr.c
-+ CC src/device/serial.c
-+ CC src/device/timer.c
-+ CC src/memory/memory.c
-+ CC src/cpu/relop.c
-+ CC src/cpu/inv.c
-+ CC src/cpu/cpu.c
-+ CC src/main.c
-+ CC src/monitor/monitor.c
-Makefile:48: recipe for target 'build/obj-riscv32/monitor/monitor.o' failed
-/home/zzy/Desktop/ics2019/nexus-am/am/arch/platform/nemu.mk:27: recipe for target 'run' failed
-Makefile:12: recipe for target 'Makefile.matrix-mul' failed
