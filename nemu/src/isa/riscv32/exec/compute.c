@@ -114,6 +114,13 @@ make_EHelper(compute) {
 
           print_asm_template2(sub);
       }
+      else if(decinfo.isa.instr.funct3==5){
+          t0 = id_src2->val & 0b11111;
+          rtl_sar(&id_dest->val, &id_src->val, &t0);
+          rtl_sr(id_dest->reg, &id_dest->val, 4);
+
+          print_asm_template2(sra);
+      }
       else{
         printf("%08x\n",cpu.pc);
         assert(0);
