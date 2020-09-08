@@ -1,6 +1,8 @@
 #include "nemu.h"
 #include "monitor/diff-test.h"
 
+extern void isa_reg_display();
+
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   bool flag=true;
   for(int i = 0; i < 32; i++){
@@ -9,6 +11,9 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
           printf("Error in %s, qemu:0x%08x, nemu:0x%08x\n", reg_name(i, 32), ref_r->gpr[i]._32, reg_l(i));
           flag=false;
       }
+  }
+  if(!flag){
+      isa_reg_display();
   }
   return flag;
 }
